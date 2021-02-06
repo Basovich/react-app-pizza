@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-app-pizza/static/css/main.16f69165.chunk.css",
-    "main.js": "/react-app-pizza/static/js/main.21f68e3a.chunk.js",
-    "main.js.map": "/react-app-pizza/static/js/main.21f68e3a.chunk.js.map",
+    "main.js": "/react-app-pizza/static/js/main.d103a5d0.chunk.js",
+    "main.js.map": "/react-app-pizza/static/js/main.d103a5d0.chunk.js.map",
     "runtime-main.js": "/react-app-pizza/static/js/runtime-main.c4460caf.js",
     "runtime-main.js.map": "/react-app-pizza/static/js/runtime-main.c4460caf.js.map",
     "static/js/2.f61080bc.chunk.js": "/react-app-pizza/static/js/2.f61080bc.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.c4460caf.js",
     "static/js/2.f61080bc.chunk.js",
     "static/css/main.16f69165.chunk.css",
-    "static/js/main.21f68e3a.chunk.js"
+    "static/js/main.d103a5d0.chunk.js"
   ]
 }
