@@ -10,7 +10,7 @@ const Categories = React.memo(({items}) => {
 
     const setActiveCategory = React.useCallback( index => {
         setActiveItem(index);
-        dispatch(setCategory(activeItem));
+        dispatch(setCategory(index));
     }, [activeItem, dispatch]);
 
     return (

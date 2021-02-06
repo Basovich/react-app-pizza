@@ -63,16 +63,8 @@ PizzaCard.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     sizes: PropTypes.object.isRequired,
-    types: PropTypes.object.isRequired
+    types: PropTypes.object.isRequired,
+    isLoaded: PropTypes.bool.isRequired,
 }
-
-// PizzaCard.defaultProps = {
-//     imageUrl: 'Не передали ссылку на изображение',
-//     name: 'Не передали имя',
-//     price: 0,
-//     sizes: [],
-//     types: []
-// }
-
 
 export default PizzaCard;
