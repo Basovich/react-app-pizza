@@ -1,0 +1,41 @@
+// Fade In and Fade Out
+.fade.enter {
+  opacity: 0;
+
+  &-active {
+    opacity: 1;
+    transition: opacity .4s ease-in-out;
+  }
+}
+
+.fade.exit {
+  opacity: 1;
+
+  &-active {
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+  }
+}
+
+// Slide Up and Slide Down
+.slide.enter {
+  opacity: 0;
+  transform: translateY(10px);
+
+  &-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+  }
+}
+
+.slide.exit {
+  opacity: 1;
+  transform: translateY(0);
+
+  &-active {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+  }
+}

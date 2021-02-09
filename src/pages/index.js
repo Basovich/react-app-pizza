@@ -1,2 +1,2 @@
-export { default as SelectPizza } from './SelectPizza';
+export { default as Pizzas } from './Pizzas';
 export { default as Cart } from './Cart';

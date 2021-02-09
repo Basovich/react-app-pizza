@@ -10,10 +10,10 @@
     svg {
       margin-right: 8px;
       transform: rotateX(180deg);
+      transition: transform .2s ease-in-out;
 
       &.is-open {
         transform: rotateX(0);
-        transition: transform .2s ease-in-out;
       }
     }
 
@@ -38,18 +38,6 @@
     overflow: hidden;
     padding: 10px 0;
     width: 160px;
-    animation: slideUp .2s ease-in-out forwards;
-
-    @keyframes slideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
 
     ul {

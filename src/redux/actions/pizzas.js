@@ -1,9 +1,10 @@
 import axios from "axios";
 
 export const fetchPizzas = () => dispatch => {
-    dispatch(setPizzasLoaded(false));
-    const url = 'https://raw.githubusercontent.com/Basovich/react-app-pizza/gh-pages/db.json';
+    dispatch(setPizzas(false));
 
+    const url = 'https://raw.githubusercontent.com/Basovich/react-app-pizza/master/public/db.json';
+    // Imitation of a long diaper
     setTimeout( () => {
         axios.get(url)
             .then(respond => {
@@ -15,7 +16,7 @@ export const fetchPizzas = () => dispatch => {
                     return 'List empty';
                 }
             })
-    }, 2000);
+    }, 600);
 }
 
 export const setPizzas = items => ({

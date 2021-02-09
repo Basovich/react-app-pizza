@@ -3,6 +3,7 @@ import ClassNames from 'classnames';
 
 import {useDispatch} from "react-redux";
 import {setCategory} from "../redux/actions/filters";
+import {fetchPizzas} from "../redux/actions/pizzas";
 
 const Categories = React.memo(({items}) => {
     const [activeItem, setActiveItem] = React.useState(0);
@@ -11,7 +12,8 @@ const Categories = React.memo(({items}) => {
     const setActiveCategory = React.useCallback( index => {
         setActiveItem(index);
         dispatch(setCategory(index));
-    }, [activeItem, dispatch]);
+        dispatch(fetchPizzas());
+    }, [dispatch]);
 
     return (
         <div className="categories">

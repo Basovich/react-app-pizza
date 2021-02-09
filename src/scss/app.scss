@@ -3,9 +3,14 @@
 @import 'libs/normalize';
 
 @import 'components/all';
+@import 'animation';
 
 body {
   background-color: $background;
+}
+
+img {
+  max-width: 100%;
 }
 
 .wrapper {
@@ -28,12 +33,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: 0 -10px;
-
-    & > svg {
-      width: 25%;
-      margin-bottom: 20px;
-    }
+    margin: 0 -20px;
   }
 
   &__top {
@@ -252,7 +252,6 @@ body {
 
         span {
           color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
           font-weight: 600;
         }
 
@@ -315,9 +314,11 @@ body {
     .button--black {
       padding: 12px 0 14px;
       width: 230px;
-      margin: 0 auto;
+      margin: 60px auto 0;
       font-weight: 600;
       font-size: 18px;
     }
   }
 }
+
+

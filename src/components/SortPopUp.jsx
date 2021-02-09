@@ -1,12 +1,29 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
 import ClassNames from 'classnames';
+import {CSSTransition} from "react-transition-group";
+
+
+import {setSortBy} from "../redux/actions/filters";
 
 
 const SortPopUp = React.memo(({items}) => {
+    const dispatch = useDispatch();
     const [visiblePopUp, setVisiblePopUp] = React.useState(false);
     const [activeSort, setActiveSort] = React.useState(0);
     const refSort= React.useRef();
     const activeSortLabel = items[activeSort].name;
+
+
+    const handlerOutsideClick = React.useCallback( e => {
+        // e.path none in Safari
+        let path = e.path || (e.composedPath && e.composedPath());
+
+        if (!path.includes(refSort.current)) {
+            setVisiblePopUp(false);
+        }
+    }, []);
+
 
     React.useEffect(() => {
         document.body.addEventListener('click', handlerOutsideClick);
@@ -14,24 +31,16 @@ const SortPopUp = React.memo(({items}) => {
         return () => {
             document.body.removeEventListener('click', handlerOutsideClick);
         };
-    }, []);
+    }, [handlerOutsideClick]);
 
     function togglePopUp() {
-        setVisiblePopUp(!visiblePopUp)
+        setVisiblePopUp(!visiblePopUp);
     }
 
-    function handlerOutsideClick(e) {
-        // e.path none in Safari
-        let path = e.path || (e.composedPath && e.composedPath());
-
-        if (!path.includes(refSort.current)) {
-            setVisiblePopUp(false)
-        }
-    }
-
-    function setActiveIndex(index) {
+    function setActiveIndex(index, type) {
         setActiveSort(index);
         setVisiblePopUp(false);
+        dispatch(setSortBy(type));
     }
 
     return (
@@ -43,22 +52,21 @@ const SortPopUp = React.memo(({items}) => {
                 <b>Сортировка по:</b>
                 <span className="sort__toggle" onClick={togglePopUp}>{activeSortLabel}</span>
             </div>
-            {visiblePopUp &&
-            <div className="sort__popup">
-                <ul>
-                    {items.map( (item, index) => (
-                        <li key={item.type}
-                            onClick={() => {
-                                setActiveIndex(index)
-                            }}
-                            className={ClassNames('',
-                                {'active': index === activeSort})}>
-                            {item.name}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            }
+
+            <CSSTransition in={visiblePopUp} timeout={200} mountOnEnter unmountOnExit>
+                <div className="sort__popup slide">
+                    <ul>
+                        {items.map( (item, index) => (
+                            <li key={item.type}
+                                onClick={setActiveIndex.bind(null, index, item.type)}
+                                className={ClassNames('',
+                                    {'active': index === activeSort})}>
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </CSSTransition>
         </div>
     );
 });
