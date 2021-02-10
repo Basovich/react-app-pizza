@@ -1,27 +1,24 @@
 import React from 'react';
 import ClassNames from "classnames";
 import {enableScroll} from "../js/scroll-locker";
-import {useDispatch} from "react-redux";
 
-const Modal = ({actionHide, fade, children}) => {
-    const dispatch = useDispatch();
+const Modal = ({back, fade, children}) => {
     const refModal = React.useRef();
 
     // Close Modal function
-    const closeModal = React.useCallback( () => {
-        dispatch(actionHide());
-        // enable after fade animation
+    const closeModal = React.useCallback( (e) => {
+        back(e);
         setTimeout(() => {
             enableScroll();
-        }, 400)
-    }, [dispatch, actionHide]);
+        }, 50)
+    }, [back]);
 
     const closeOnClick = React.useCallback( e => {
         // e.path none in Safari/Firefox
         let path = e.path || (e.composedPath && e.composedPath());
 
         if (!path.includes(refModal.current)) {
-            closeModal();
+            closeModal(e);
         }
     }, [closeModal]);
 
@@ -36,7 +33,7 @@ const Modal = ({actionHide, fade, children}) => {
         }
 
         if (isEscape) {
-            closeModal();
+            closeModal(e);
         }
     }, [closeModal])
 
@@ -52,7 +49,7 @@ const Modal = ({actionHide, fade, children}) => {
 
     return (
         <section className={ClassNames('modal',
-            {'fade': fade})}>
+            {'fade-in': fade})}>
             <div ref={refModal} className="modal__container">
                 <button className="modal__close" aria-label="Close" onClick={closeModal}></button>
                 {children}

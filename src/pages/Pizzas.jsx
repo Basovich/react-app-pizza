@@ -3,12 +3,9 @@ import {Categories, SortPopUp} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 
 import {fetchPizzas} from "../redux/actions/pizzas";
-
 import PizzaCard from "../components/PizzasCard/PizzaCard";
 import PizzasLoader from "../components/PizzasCard/PizzasLoader";
-import SelectPizza from "../components/PizzasCard/SelectPizza";
-import {CSSTransition} from "react-transition-group";
-import PropTypes from "prop-types";
+
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sort = [
@@ -16,20 +13,16 @@ const sort = [
     {name: 'цене', type: 'price'}
 ];
 
-
-const Pizzas = ({path}) => {
+const Pizzas = () => {
     const dispatch = useDispatch();
-    const {pizzas, isLoaded, category, sortBy, showSelectPizzaModal} = useSelector(({pizzas, filters, selectPizzaModal}) => {
+    const {pizzas, isLoaded, category, sortBy} = useSelector(({pizzas, filters}) => {
         return {
             pizzas: pizzas.items,
             isLoaded: pizzas.isLoaded,
             category: filters.category,
-            sortBy: filters.sortBy,
-            showSelectPizzaModal: selectPizzaModal.show
+            sortBy: filters.sortBy
         }
     });
-
-    console.log(path)
 
     let newPizzas;
     if (pizzas.length) {
@@ -61,8 +54,8 @@ const Pizzas = ({path}) => {
     return (
         <div className="container">
             <div className="content__top">
-                <Categories items={categories}/>
-                <SortPopUp items={sort}/>
+                <Categories items={categories} active={category} />
+                <SortPopUp items={sort} active={sortBy} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
@@ -76,24 +69,9 @@ const Pizzas = ({path}) => {
                         })
                 }
             </div>
-            <CSSTransition
-                in={showSelectPizzaModal}
-                timeout={400}
-                mountOnEnter
-                unmountOnExit
-            >
-                <SelectPizza />
-            </CSSTransition>
         </div>
     );
 };
 
-Pizzas.propTypes = {
-    path: PropTypes.string.isRequired
-}
-
-Pizzas.defaultProps = {
-    path: '/'
-};
 
 export default Pizzas;

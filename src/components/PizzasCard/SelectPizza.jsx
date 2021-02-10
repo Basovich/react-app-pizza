@@ -1,25 +1,52 @@
 import React from 'react';
 import {useSelector} from "react-redux";
+import {useHistory, useParams} from "react-router-dom";
 import ClassNames from "classnames";
-import {hideSelectedPizza} from "../../redux/actions/selectPizzaModal";
 
 import Button from "../Button";
 import Modal from "../Modal";
 
+import {disableScroll} from "../../js/scroll-locker";
+
+
 const SelectPizza = () => {
-    const {imageUrl, name, about, types, sizes, prices} = useSelector(({selectPizzaModal}) => {
-        return {
-            imageUrl: selectPizzaModal.pizza.imageUrl,
-            name: selectPizzaModal.pizza.name,
-            about: selectPizzaModal.pizza.about,
-            types: selectPizzaModal.pizza.types,
-            sizes: selectPizzaModal.pizza.sizes,
-            prices: selectPizzaModal.pizza.prices,
-        }
-    });
-    const [activeType, setActiveType] = React.useState(types.active);
-    const [activeSize, setActiveSize] = React.useState(sizes.active);
+    const [activeType, setActiveType] = React.useState('');
+    const [activeSize, setActiveSize] = React.useState('');
     const [price, setPrice] = React.useState(0);
+    const { id } = useParams();
+    const history = useHistory();
+    const pizzas = useSelector(({pizzas}) => pizzas);
+
+    let imageUrl, name, about, types, sizes, prices;
+    if (pizzas.items.length) {
+        const pizza = pizzas.items.filter(pizza => pizza.id === +id);
+        imageUrl = pizza[0].imageUrl;
+        name = pizza[0].name;
+        about = pizza[0].about;
+        types = pizza[0].types;
+        sizes = pizza[0].sizes;
+        prices = pizza[0].prices;
+    }
+
+    React.useEffect(() => {
+        if (pizzas.items.length) {
+            setActiveType(types.active);
+            setActiveSize(sizes.active);
+        }
+    }, [pizzas, types, sizes]);
+
+    React.useEffect(() => {
+        if (pizzas.items.length && activeType !== '' && activeSize !== '') {
+            setPrice(prices[activeType][activeSize]);
+        }
+    }, [activeType, activeSize, prices, pizzas]);
+
+    const back = e => {
+        e.stopPropagation();
+        history.goBack();
+    };
+
+    disableScroll();
 
     // Change type & size pizza
     function toggleActiveTypes(index) {
@@ -30,17 +57,10 @@ const SelectPizza = () => {
         setActiveSize(index);
     }
 
-    // Change price
-    const getPrice = React.useCallback( (typeIndex, sizeIndex) => {
-        return prices[typeIndex][sizeIndex];
-    }, [prices])
-
-    React.useEffect(() => {
-        setPrice( getPrice(activeType, activeSize));
-    }, [activeType, activeSize, getPrice]);
+    if (!pizzas.items.length) return null;
 
     return (
-        <Modal actionHide={hideSelectedPizza} fade>
+        <Modal fade back={back}>
             <div className="pizza-block__modal">
                 <div className="pizza-block__modal-img">
                     <img src={imageUrl} alt={`${name}`}/>

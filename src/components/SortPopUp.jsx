@@ -3,17 +3,17 @@ import {useDispatch} from "react-redux";
 import ClassNames from 'classnames';
 import {CSSTransition} from "react-transition-group";
 
-
 import {setSortBy} from "../redux/actions/filters";
+import PropTypes from "prop-types";
 
 
-const SortPopUp = React.memo(({items}) => {
+const SortPopUp = React.memo(({items, active}) => {
+    const activeIndex = items.findIndex(elem => elem.type === active);
     const dispatch = useDispatch();
     const [visiblePopUp, setVisiblePopUp] = React.useState(false);
-    const [activeSort, setActiveSort] = React.useState(0);
+    const [activeSort, setActiveSort] = React.useState(activeIndex);
     const refSort= React.useRef();
     const activeSortLabel = items[activeSort].name;
-
 
     const handlerOutsideClick = React.useCallback( e => {
         // e.path none in Safari
@@ -70,5 +70,10 @@ const SortPopUp = React.memo(({items}) => {
         </div>
     );
 });
+
+SortPopUp.propTypes = {
+    items: PropTypes.array.isRequired,
+    active: PropTypes.string.isRequired
+}
 
 export default SortPopUp;

@@ -4,9 +4,11 @@ import ClassNames from 'classnames';
 import {useDispatch} from "react-redux";
 import {setCategory} from "../redux/actions/filters";
 import {fetchPizzas} from "../redux/actions/pizzas";
+import PropTypes from "prop-types";
 
-const Categories = React.memo(({items}) => {
-    const [activeItem, setActiveItem] = React.useState(0);
+
+const Categories = React.memo(({items, active}) => {
+    const [activeItem, setActiveItem] = React.useState(active);
     const dispatch = useDispatch();
 
     const setActiveCategory = React.useCallback( index => {
@@ -30,6 +32,13 @@ const Categories = React.memo(({items}) => {
         </div>
     );
 })
+
+Categories.propTypes = {
+    items: PropTypes.array.isRequired,
+    active: PropTypes.number.isRequired
+}
+
+
 
 export default Categories;
 

@@ -2,13 +2,14 @@ import React from 'react';
 import pizzaLogo from "../assets/img/pizza-logo.svg";
 import {Button} from "./index";
 import { Link } from 'react-router-dom';
+import {page} from "../router";
 
 
 const Header = () => {
     return (
         <div className="header">
             <div className="container">
-                <Link to='/'>
+                <Link to={page.pizzas}>
                     <div className="header__logo">
                         <img width="38" src={pizzaLogo} alt="Pizza logo"/>
                         <div>
@@ -18,7 +19,7 @@ const Header = () => {
                     </div>
                 </Link>
                 <div className="header__cart">
-                    <Link to='/cart'>
+                    <Link to={page.cart}>
                         <Button cart>
                             <span>520 ₽</span>
                             <div className="button__delimiter"></div>

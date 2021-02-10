@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import {useLocation, Link} from "react-router-dom";
+
+import {page} from "../../router";
+
 import Button from "../Button";
-import {useDispatch} from "react-redux";
-import {fetchAllPizzas} from "../../redux/actions/selectPizzaModal";
 
 const PizzaCard = ({imageUrl, name, price, about, id}) => {
-    const dispatch = useDispatch();
-
-    function onClickHandler(id) {
-        dispatch(fetchAllPizzas(id));
-    }
+    let location = useLocation();
 
     return (
         <div className="pizza-block">
@@ -24,9 +22,16 @@ const PizzaCard = ({imageUrl, name, price, about, id}) => {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {price} ₴</div>
-                <Button outline add onClickHandler={onClickHandler.bind(null, id)}>
-                    <span>Выбрать</span>
-                </Button>
+                <Link
+                    to={{
+                        pathname: `${page.pizza}${id}`,
+                        state: { background: location }
+                    }}
+                >
+                    <Button outline add>
+                        <span>Выбрать</span>
+                    </Button>
+                </Link>
             </div>
         </div>
     );
