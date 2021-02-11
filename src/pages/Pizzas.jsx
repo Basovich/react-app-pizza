@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchPizzas} from "../redux/actions/pizzas";
 import PizzaCard from "../components/PizzasCard/PizzaCard";
 import PizzasLoader from "../components/PizzasCard/PizzasLoader";
+import {getCartPizzasLocalstorage} from "../redux/actions/cart";
 
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
@@ -15,12 +16,13 @@ const sort = [
 
 const Pizzas = () => {
     const dispatch = useDispatch();
-    const {pizzas, isLoaded, category, sortBy} = useSelector(({pizzas, filters}) => {
+    const {pizzas, isLoaded, category, sortBy, cart} = useSelector(({pizzas, filters, cart}) => {
         return {
             pizzas: pizzas.items,
             isLoaded: pizzas.isLoaded,
             category: filters.category,
-            sortBy: filters.sortBy
+            sortBy: filters.sortBy,
+            cart
         }
     });
 
@@ -46,6 +48,18 @@ const Pizzas = () => {
         }
     }
 
+    React.useEffect(() => {
+        dispatch(getCartPizzasLocalstorage());
+    }, [dispatch]);
+
+    React.useEffect(() => {
+        try {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        } catch (error) {
+            alert(error);
+        }
+
+    }, [cart]);
 
     React.useEffect(() => {
         dispatch(fetchPizzas());

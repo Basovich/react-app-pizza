@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory, useParams} from "react-router-dom";
 import ClassNames from "classnames";
 
-import {addCartPizzas} from "../../redux/actions/cart";
+import {addCartPizza} from "../../redux/actions/cart";
 
 import Button from "../Button";
 import Modal from "../Modal";
@@ -71,7 +71,7 @@ const SelectPizza = () => {
                 price: price
             }]
         }
-        dispatch(addCartPizzas(pizza, price, 1));
+        dispatch(addCartPizza(pizza, price, 1));
     }
 
     if (!pizzas.items.length) return null;

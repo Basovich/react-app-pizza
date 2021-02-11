@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import Button from "../Button";
 import {useDispatch} from "react-redux";
-import {addCartPizzas, deleteCartPizza} from "../../redux/actions/cart";
+import {addCartPizza, deleteCartPizza} from "../../redux/actions/cart";
 
 
 function CartPizza({item}) {
@@ -19,7 +19,7 @@ function CartPizza({item}) {
                 price: price
             }]
         }
-        dispatch(addCartPizzas(pizza, price, 1));
+        dispatch(addCartPizza(pizza, price, 1));
     }
 
     function deleteOne() {
@@ -27,9 +27,6 @@ function CartPizza({item}) {
     }
 
     function deleteOneType() {
-        console.log(key)
-        console.log(count)
-        console.log(price * count)
         dispatch(deleteCartPizza(key[0], price * count, count));
     }
 

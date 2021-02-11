@@ -8,6 +8,14 @@ const initialState = {
 const cart = (state = initialState, action) => {
     switch (action.type) {
         case('ADD_CART_PIZZAS'):
+            const localStorageState = action.payload;
+            return {
+                items: localStorageState.items,
+                price: localStorageState.price,
+                count: localStorageState.count,
+            }
+
+        case('ADD_CART_PIZZA'):
             const newItems = state.items;
             const propertyName = Object.keys(action.payload.item)[0];
 
