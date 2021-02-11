@@ -8,7 +8,7 @@ const initialState = {
 const cart = (state = initialState, action) => {
     switch (action.type) {
         case('ADD_CART_PIZZAS'):
-            const localStorageState = action.payload;
+            const localStorageState = action.payload || initialState;
             return {
                 items: localStorageState.items,
                 price: localStorageState.price,
