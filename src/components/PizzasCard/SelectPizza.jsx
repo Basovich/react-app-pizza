@@ -1,7 +1,9 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useHistory, useParams} from "react-router-dom";
 import ClassNames from "classnames";
+
+import {addCartPizzas} from "../../redux/actions/cart";
 
 import Button from "../Button";
 import Modal from "../Modal";
@@ -9,7 +11,9 @@ import Modal from "../Modal";
 import {disableScroll} from "../../js/scroll-locker";
 
 
+
 const SelectPizza = () => {
+    const dispatch = useDispatch();
     const [activeType, setActiveType] = React.useState('');
     const [activeSize, setActiveSize] = React.useState('');
     const [price, setPrice] = React.useState(0);
@@ -57,6 +61,19 @@ const SelectPizza = () => {
         setActiveSize(index);
     }
 
+    function addPizzaToCart() {
+        const pizza = {
+            [`${id}:${activeType}:${activeSize}`]: [{
+                imageUrl: imageUrl,
+                name: name,
+                type: types.names[activeType],
+                sizes: sizes.names[activeSize],
+                price: price
+            }]
+        }
+        dispatch(addCartPizzas(pizza, price, 1));
+    }
+
     if (!pizzas.items.length) return null;
 
     return (
@@ -94,7 +111,7 @@ const SelectPizza = () => {
                             </ul>
                         </div>
                     </div>
-                    <Button cart>
+                    <Button cart onClickHandler={addPizzaToCart}>
                         <span>Добавить в корзину за {price} ₴</span>
                     </Button>
                 </div>
