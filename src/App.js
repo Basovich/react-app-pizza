@@ -31,3 +31,8 @@ function App() {
 }
 
 export default App;
+
+
+
+// add to package.json
+//  "homepage": "https://basovich.github.io/react-app-pizza/",
