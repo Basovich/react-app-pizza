@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import './PizzaCard.scss';
 import {useLocation, Link} from "react-router-dom";
 
 import {page} from "../../router";
 
-import Button from "../Button";
+import Button from "../Button/Button";
 
 const PizzaCard = ({imageUrl, name, price, about, id}) => {
     let location = useLocation();

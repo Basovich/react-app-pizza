@@ -1,9 +1,10 @@
 import React from 'react';
+import './SortPopUp.scss';
 import {useDispatch} from "react-redux";
 import ClassNames from 'classnames';
 import {CSSTransition} from "react-transition-group";
 
-import {setSortBy} from "../redux/actions/filters";
+import {setSortBy} from "../../redux/actions/filters";
 import PropTypes from "prop-types";
 
 

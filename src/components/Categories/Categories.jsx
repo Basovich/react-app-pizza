@@ -2,10 +2,10 @@ import React from 'react';
 import ClassNames from 'classnames';
 
 import {useDispatch} from "react-redux";
-import {setCategory} from "../redux/actions/filters";
-import {fetchPizzas} from "../redux/actions/pizzas";
+import {setCategory} from "../../redux/actions/filters";
+import {fetchPizzas} from "../../redux/actions/pizzas";
 import PropTypes from "prop-types";
-
+import './Categories.scss'
 
 const Categories = React.memo(({items, active}) => {
     const [activeItem, setActiveItem] = React.useState(active);

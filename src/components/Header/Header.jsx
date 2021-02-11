@@ -1,10 +1,10 @@
 import React from 'react';
-import pizzaLogo from "../assets/img/pizza-logo.svg";
-import {Button} from "./index";
+import pizzaLogo from "../../assets/img/pizza-logo.svg";
+import {Button} from "../index";
 import { Link } from 'react-router-dom';
-import {page} from "../router";
+import {page} from "../../router";
 import {useSelector} from "react-redux";
-
+import './Header.scss'
 
 const Header = () => {
     const {price, count} = useSelector(({cart}) => {
@@ -20,7 +20,7 @@ const Header = () => {
                 <Link to={page.pizzas}>
                     <div className="header__logo">
                         <img width="38" src={pizzaLogo} alt="Pizza logo"/>
-                        <div>
+                        <div className="header__logo-text">
                             <h1>React Pizza</h1>
                             <p>самая вкусная пицца во вселенной</p>
                         </div>

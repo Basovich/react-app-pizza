@@ -1,6 +1,7 @@
 import React from 'react';
+import './Modal.scss'
 import ClassNames from "classnames";
-import {enableScroll} from "../js/scroll-locker";
+import {enableScroll} from "../../js/scroll-locker";
 
 const Modal = ({back, fade, children}) => {
     const refModal = React.useRef();

@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .modal {
   position: fixed;
   top: 0;
@@ -22,13 +24,17 @@
   &__container {
     position: relative;
     width: auto;
-    margin: 50px auto;
+    margin: 20px;
     display: inline-block;
     vertical-align: middle;
     background-color: #fff;
     border-radius: 20px;
     cursor: default;
     text-align: left;
+
+    @media (min-width: $tablet-sm) {
+      margin: 50px auto;
+    }
   }
 
   // .modal__close

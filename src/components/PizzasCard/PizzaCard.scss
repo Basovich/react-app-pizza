@@ -1,12 +1,37 @@
-@import 'variables';
+@import '../../scss/variables';
 
 .pizza-block {
-  width: 25%;
-  padding: 0 20px;
-  margin-bottom: 65px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 20px;
+
+  & + & {
+    margin-top: 20px;
+    padding-top: 40px;
+    border-top: 1px solid $gray-line;
+
+    @media (min-width: $tablet-sm) {
+      border-top: none;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  @media (min-width: $tablet-sm) {
+    width: 50%;
+    padding: 0 20px;
+    margin-bottom: 65px;
+  }
+
+  @media (min-width: $tablet-md) {
+    width: calc(100% / 3);
+  }
+
+  @media (min-width: $tablet-lg) {
+    width: 25%;
+  }
 
   &__image {
     width: 100%;
@@ -84,7 +109,8 @@
 
   &__modal {
     display: flex;
-    width: calc(100% - 20px);
+    flex-wrap: wrap;
+    width: 100%;
     padding: 40px;
 
     @media (min-width: 768px) {
@@ -96,9 +122,15 @@
     }
 
     &-img {
-      width: 60%;
+      width: 100%;
       height: 350px;
       padding: 10px;
+
+      @media (min-width: $tablet-sm) {
+        width: 60%;
+        height: 350px;
+        padding: 10px;
+      }
 
       & img {
         max-width: 100%;
@@ -118,10 +150,18 @@
     }
 
     &-content {
-      width: 40%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      @media (min-width: $tablet-sm) {
+        width: 40%;
+      }
+    }
+
+    &-info {
+      margin-bottom: 40px;
     }
   }
 }

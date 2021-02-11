@@ -6,3 +6,23 @@ $orange: #fe5f1e;
 $container-width: 90%;
 
 $duration: 0.15s;
+
+$mobile: 450px;
+$tablet-sm: 768px;
+$tablet-md: 1024px;
+$tablet-lg: 1280px;
+$desktop-sm: 1360px;
+$desktop-md: 1440px;
+$desktop-lg: 1600px;
+
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}

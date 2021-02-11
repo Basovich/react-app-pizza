@@ -1,6 +1,7 @@
 import React from 'react';
+import './Cart.scss';
 import PropTypes from "prop-types";
-import Button from "../Button";
+import Button from "../Button/Button";
 import {useDispatch} from "react-redux";
 import {addCartPizza, deleteCartPizza} from "../../redux/actions/cart";
 

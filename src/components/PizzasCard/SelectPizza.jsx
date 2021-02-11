@@ -5,8 +5,8 @@ import ClassNames from "classnames";
 
 import {addCartPizza} from "../../redux/actions/cart";
 
-import Button from "../Button";
-import Modal from "../Modal";
+import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 
 import {disableScroll} from "../../js/scroll-locker";
 

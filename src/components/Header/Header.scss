@@ -1,17 +1,34 @@
-@import 'variables';
+@import '../../scss/variables';
 
 .header {
   border-bottom: 1px solid $gray-line;
-  padding: 40px 0;
+  padding: 20px 0;
+
+  @media (min-width: $tablet-sm) {
+    padding: 40px 0;
+  }
 
   .container {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (min-width: $tablet-lg) {
+      width: 90%;
+    }
   }
 
   &__logo {
     display: flex;
+
+    &-text {
+      display: none;
+
+      @media (min-width: $tablet-sm) {
+        display: block;
+      }
+    }
 
     img {
       margin-right: 15px;

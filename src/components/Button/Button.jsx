@@ -1,4 +1,5 @@
 import React from 'react';
+import './Button.scss';
 import ClassNames from 'classnames';
 
 const Button = ({cart, outline, add, circle, children, onClickHandler}) => {

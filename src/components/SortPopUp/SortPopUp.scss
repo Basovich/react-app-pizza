@@ -1,7 +1,12 @@
-@import 'variables';
+@import '../../scss/variables';
 
 .sort {
   position: relative;
+  margin-top: 10px;
+
+  @media (min-width: $tablet-lg) {
+    margin-top: 0;
+  }
 
   &__label {
     display: flex;
